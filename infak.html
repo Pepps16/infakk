@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Infaq Bulan Juni 20250</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Daftar Infaq Bulan Juni 20250</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Sudah Bayar</th>
+    </tr>
+  </thead>
+  <tbody id="tabelInfaq">
+    <!-- Isi akan ditambahkan lewat JavaScript -->
+  </tbody>
+</table>
+
+<h3>Transfer ke Irpan</h3>
+<p><strong>BCA:</strong> 2530371991</p>
+<p><strong>Mandiri:</strong> 1820011555372</p>
+
+<script>
+  const anggota = [
+    "Dedi", "Robi", "Iwan", "Jabar", "Edi", "-", "Nadzir", "Dadam", "Adiw", "Asep",
+    "Ridwan", "Eko", "Rio", "Naja", "Ruly", "Mpan", "Apepp", "Rizky", "Fazril", "Bewok (Ajizi)",
+    "Ikbal", "HARIRI", "Dd iyuy", "Egi", "Azka", "Bayu", "Ujang (mio)", "-", "ILHAM", "Abdilla (Aab)",
+    "Arijal", "Lili", "Sanip", "Agustian iyang", "Deong"
+  ];
+
+  const tabel = document.getElementById("tabelInfaq");
+
+  anggota.forEach((nama, index) => {
+    const tr = document.createElement("tr");
+    const checked = localStorage.getItem(`infaq_${index}`) === "true";
+
+    tr.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${nama}</td>
+      <td><input type="checkbox" id="check${index}" ${checked ? "checked" : ""}></td>
+    `;
+
+    tabel.appendChild(tr);
+
+    const checkbox = tr.querySelector("input");
+    checkbox.addEventListener("change", () => {
+      localStorage.setItem(`infaq_${index}`, checkbox.checked);
+    });
+  });
+</script>
+
+</body>
+</html>
